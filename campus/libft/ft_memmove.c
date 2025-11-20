@@ -1,41 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arene-ri <arene-ri@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/17 13:35:56 by arene-ri          #+#    #+#             */
-/*   Updated: 2025/11/20 09:20:45 by arene-ri         ###   ########.fr       */
+/*   Created: 2025/11/20 09:21:05 by arene-ri          #+#    #+#             */
+/*   Updated: 2025/11/20 10:08:21 by arene-ri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include <stdio.h>
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char *d = (unsigned char *)dest;
-	const unsigned char *s = (const unsigned char *)src;
+	unsigned char	*d = (unsigned char *)dest;
+	const unsigned char	*s = (const unsigned char *)src;
 	int	i;
 
-	i = 0;
-	while (i < n)
+	i = n;
+	while (i > 0)
 	{
+		i--;
 		d[i] = s[i];
-		i++;
 	}
-	return (dest);
+	return(dest);
 }
 
-// La función copia n bytes de src (origen) en dest (destino).
+// Esta función copia n bytes de src en dest, manejando
+// el solapamiento entre origen y destino.
 
-/*int	main(void)
+int	main(void)
 {
-	char	dest[19]="hola me llamo Alba";
-	char	src[]="adios ";
+	char	dest[20] = "Hello World!";
+	char	src[] = "H";
 	char	*temp;
 
-	temp = ft_memcpy(dest, src, 6);
+	temp = ft_memmove(dest, src, 4);
 	printf("%s\n", temp);
-	return (0);
-}*/
+	return(0);
+}
