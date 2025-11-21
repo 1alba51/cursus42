@@ -12,7 +12,7 @@ char	*ft_strrchr(const char *s, int c)
 	{
 		s++;
 	}
-	while (s > start)
+	while (s >= start)
 	{
 		if (*s == c)
 		{
@@ -37,7 +37,7 @@ char	*ft_strrchr(const char *s, int c)
 int	main(void)
 {
 	char	s[] = "Hello World!";
-	int	c = 'l';
+	int	c = 'H';
 	char	*result;
 
 	printf("Debemos encontrar el primer carácter %c en el string %s\n", c, s);
