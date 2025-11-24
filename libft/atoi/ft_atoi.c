@@ -18,22 +18,30 @@ int	ft_atoi(const char *nptr)
 	i = 0;
 	result = 0;
 	sign = 1;
-	while (nptr[i] == ' ')
+	while (nptr[i])
 	{
+		if (nptr[i] == ' ')
+		{
+			i++;
+		}
+		else if (nptr[i] == '+')
+		{
+			sign = 1;
+			i++;
+		}
+		else if (nptr[i] == '-')
+		{
+			sign = -1;
+			i++;
+		}
+		else if (nptr[i] >= '0' && nptr[i] <= '9')
+		{
+			result = nptr[i] - 48;
+			result = result *10;
+			i++;
+		}
 		i++;
-	}
-	if (nptr[i] == '+')
-	{
-		sign = 1;
-	}
-	else if (nptr[i] == '-')
-	{
-		sign = -1;
-	}
-	while ('9' >= nptr[i] <= '0')
-	{
-		result = result * 10 + (nptr[i] - 48);
-		return(result);
+		return(result * sign);
 	}
 	return(0);
 }
@@ -43,7 +51,8 @@ int	ft_atoi(const char *nptr)
 // 3. Y otra que controle si el número es positivo o negativo según el signo que lleve delante
 // 4. Si el primer byte es un espacio en blanco lo ignoramos y pasamos al siguiente
 // 5. Si nos encontramos con un signo lo ponemos positivo o negativo
-// 6. 
+// 6. Mientras que los caracteres sean valores numéricos los convertimos en enteros y pasamos al siguiente
+// 7. Devolvemos el resultado multiplicado por el signo
 
 int	main(void)
 {
