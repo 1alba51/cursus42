@@ -7,31 +7,22 @@
 #include <stdio.h>
 #include <string.h>
 
-static size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len])
-	{
-		len++;
-	}
-	return (len);
-}
-
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	dst_length;
 	size_t	src_length;
 	size_t	i;
 
-	dst_length = ft_strlen(dst);
-	src_length = ft_strlen(src);
+	dst_length = 0;
+	src_length = 0;
 	i = 0;
-	if (dst_length < size)
-	{
-		while (i < (size - 1) - dst_length && src[i] != '\0')
-		{
+	while (dst[dst_length])
+		dst_length++;
+	while (src[src_length]) {
+		src_length++;
+	}
+	if (dst_length < size) {
+		while (i < (size - 1) - dst_length && src[i] != '\0') {
 			dst[i + dst_length] = src[i];
 			i++;
 		}
