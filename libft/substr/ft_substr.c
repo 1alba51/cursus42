@@ -9,44 +9,54 @@
 #include <stdio.h>
 #include <malloc.h>
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+static size_t	ft_strlen(const char *s)
 {
 	size_t	len_s;
-	size_t	n;
-	char	*empty;
-	char	*substring;
 
 	len_s = 0;
-	n = 0;
-	// Comprobamos si es nulo
-	if (s == NULL)
-	{
-		return (NULL);
-	}
-	// Calculamos longitud
 	while (s[len_s])
 	{
 		len_s++;
 	}
-	// Caso especial
-	if (start >= len_s)
+	return (len_s);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	len_s;
+	size_t	n;
+	size_t	i;
+	char	*substring;
+
+	n = 0;
+	i = 0;
+	if (s == NULL)
 	{
-		empty = malloc(1);
-		empty[0] = '\0';
-		return (empty);
+		return (NULL);
 	}
-	// Cuantos caracteres se van a copiar
-	
-	// Reserva de memoria
+	len_s = ft_strlen(s);
+	if (start < len_s)
+	{
+		if (len < (len_s - start))
+		{
+			n = len;
+		}
+		else
+		{
+			n = len_s - start;
+		}
+	}
 	substring = malloc(n + 1);
-	// Copiar caracteres
-	while (n <= s[start])
+	if (substring == NULL)
 	{
-		
+		return (NULL);
 	}
-	// Cerramos string
+	while (i < n)
+	{
+		substring[i] = s[start + i];
+		i++;
+	}
 	substring[n] = '\0';
-	// Devolvemos
 	return (substring);
 }
 
@@ -63,9 +73,9 @@ int	main(void)
 	char	s[] = "Hello World";
 	char	*result;
 
-	printf("El string original: '%s'n", s);
+	printf("El string original: '%s'\n", s);
 	result = ft_substr(s, 4, 8);
 	printf("El substring: '%s'\n", result);
-	fre(result);
+	free(result);
 	return(0);
 }
